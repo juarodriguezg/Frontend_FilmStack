@@ -66,55 +66,70 @@ export const MovieForm: React.FC<MovieFormProps> = ({ movie, onSubmit, onCancel 
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto">
+      <Card className="w-full max-w-2xl my-8 border" style={{
+        backgroundColor: 'var(--color-primary-1)',
+        borderColor: 'var(--color-primary-3)'
+      }}>
+        <div className="p-4 sm:p-6">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
               {movie ? 'Editar Película' : 'Agregar Película'}
             </h2>
             <button
               onClick={onCancel}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white transition-colors p-1"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
+          {/* Search Section */}
           {!movie && (
-            <div className="mb-6">
-              <div className="flex gap-2 mb-4">
+            <div className="mb-4 sm:mb-6">
+              <div className="flex flex-col sm:flex-row gap-2 mb-4">
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                   placeholder="Buscar película en TMDB..."
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 text-white text-sm sm:text-base"
+                  style={{
+                    backgroundColor: 'var(--color-primary-2)',
+                    borderColor: 'var(--color-primary-3)',
+                    border: '1px solid'
+                  }}
                 />
-                <Button onClick={handleSearch} isLoading={isSearching}>
-                  <Search className="w-5 h-5" />
+                <Button onClick={handleSearch} isLoading={isSearching} className="w-full sm:w-auto">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
 
               {searchResults.length > 0 && (
-                <div className="space-y-2 max-h-60 overflow-y-auto">
+                <div className="space-y-2 max-h-48 sm:max-h-60 overflow-y-auto">
                   {searchResults.map((result) => (
                     <button
                       key={result.id}
                       onClick={() => selectMovie(result)}
-                      className="w-full flex items-center gap-4 p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors text-left"
+                      className="w-full flex items-center gap-3 sm:gap-4 p-2 sm:p-3 rounded-lg transition-colors text-left"
+                      style={{
+                        backgroundColor: 'var(--color-primary-2)'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-3)'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-2)'}
                     >
                       {result.poster_path && (
                         <img
                           src={`https://image.tmdb.org/t/p/w92${result.poster_path}`}
                           alt={result.title}
-                          className="w-12 h-18 object-cover rounded"
+                          className="w-10 h-14 sm:w-12 sm:h-18 object-cover rounded"
                         />
                       )}
-                      <div className="flex-1">
-                        <p className="text-white font-semibold">{result.title}</p>
-                        <p className="text-gray-400 text-sm">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-semibold text-sm sm:text-base truncate">{result.title}</p>
+                        <p className="text-gray-400 text-xs sm:text-sm">
                           {result.release_date ? new Date(result.release_date).getFullYear() : 'N/A'}
                         </p>
                       </div>
@@ -125,7 +140,8 @@ export const MovieForm: React.FC<MovieFormProps> = ({ movie, onSubmit, onCancel 
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
+          {/* Form */}
+          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-3 sm:space-y-4">
             <Input
               label="Título"
               placeholder="Título de la película"
@@ -159,11 +175,11 @@ export const MovieForm: React.FC<MovieFormProps> = ({ movie, onSubmit, onCancel 
               error={errors.genre?.message}
             />
 
-            <div className="flex gap-3 pt-4">
-              <Button type="submit" isLoading={isLoading} className="flex-1">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <Button type="submit" isLoading={isLoading} className="flex-1 order-2 sm:order-1">
                 {movie ? 'Actualizar' : 'Agregar'}
               </Button>
-              <Button type="button" variant="secondary" onClick={onCancel} className="flex-1">
+              <Button type="button" variant="secondary" onClick={onCancel} className="flex-1 order-1 sm:order-2">
                 Cancelar
               </Button>
             </div>

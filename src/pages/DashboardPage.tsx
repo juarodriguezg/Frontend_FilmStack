@@ -68,42 +68,51 @@ export const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+    <div className="min-h-screen" style={{
+      background: `linear-gradient(135deg, var(--color-primary-1) 0%, var(--color-primary-2) 50%, var(--color-primary-3) 100%)`
+    }}>
       <Navbar isAuthenticated />
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Mis Películas</h1>
-            <p className="text-gray-400">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">Mis Películas</h1>
+            <p className="text-gray-400 text-sm sm:text-base">
               {movies.length} {movies.length === 1 ? 'película' : 'películas'} en tu catálogo
             </p>
           </div>
-          <Button onClick={() => setShowForm(true)}>
-            <Plus className="w-5 h-5 mr-2" />
-            Agregar Película
+          <Button onClick={() => setShowForm(true)} className="w-full sm:w-auto">
+            <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+            <span className="hidden sm:inline">Agregar Película</span>
+            <span className="sm:hidden">Agregar</span>
           </Button>
         </div>
 
+        {/* Content */}
         {isLoading ? (
-          <div className="flex items-center justify-center py-20">
+          <div className="flex items-center justify-center py-12 sm:py-20">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-400">Cargando películas...</p>
+              <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-t-2 border-b-2 mx-auto mb-4"
+                   style={{ borderColor: 'var(--color-primary-5)' }}></div>
+              <p className="text-gray-400 text-sm sm:text-base">Cargando películas...</p>
             </div>
           </div>
         ) : movies.length === 0 ? (
-          <div className="text-center py-20">
-            <FilmIcon className="w-24 h-24 text-gray-600 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">No hay películas aún</h2>
-            <p className="text-gray-400 mb-6">Comienza agregando tu primera película favorita</p>
+          <div className="text-center py-12 sm:py-20">
+            <FilmIcon className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-4" 
+                      style={{ color: 'var(--color-primary-3)' }} />
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">No hay películas aún</h2>
+            <p className="text-gray-400 mb-6 text-sm sm:text-base px-4">
+              Comienza agregando tu primera película favorita
+            </p>
             <Button onClick={() => setShowForm(true)}>
-              <Plus className="w-5 h-5 mr-2" />
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Agregar Primera Película
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {movies.map((movie) => (
               <MovieCard
                 key={movie.id}
@@ -116,6 +125,7 @@ export const DashboardPage: React.FC = () => {
         )}
       </div>
 
+      {/* Forms */}
       {showForm && (
         <MovieForm
           onSubmit={handleCreate}

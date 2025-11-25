@@ -14,11 +14,11 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl',
-    secondary: 'bg-gray-700 hover:bg-gray-600 text-white',
+    primary: 'bg-gradient-primary hover:bg-gradient-primary-hover text-white shadow-lg hover:shadow-xl hover:scale-105',
+    secondary: 'bg-gray-700 hover:bg-gray-600 text-white border border-gray-600',
     danger: 'bg-red-600 hover:bg-red-700 text-white',
   };
 
@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {isLoading ? (
         <span className="flex items-center justify-center">
-          <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+          <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5 mr-2" viewBox="0 0 24 24">
             <circle
               className="opacity-25"
               cx="12"
