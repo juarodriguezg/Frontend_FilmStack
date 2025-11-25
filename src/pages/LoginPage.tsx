@@ -41,7 +41,7 @@ export const LoginPage: React.FC = () => {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center justify-center space-x-2 text-white hover:text-blue-400 transition-colors mb-4">
             <Film className="w-10 h-10" />
-            <span className="text-2xl font-bold">MovieCatalog</span>
+            <span className="text-2xl font-bold">FilmStack</span>
           </Link>
           <h1 className="text-3xl font-bold text-white mb-2">Iniciar Sesión</h1>
           <p className="text-gray-400">Accede a tu catálogo de películas</p>
