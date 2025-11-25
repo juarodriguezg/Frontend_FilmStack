@@ -97,9 +97,9 @@ export const LandingPage: React.FC = () => {
         <div className="container mx-auto px-4 text-center text-gray-400">
           <div className="flex items-center justify-center space-x-2 mb-2">
             <Film className="w-6 h-6" />
-            <span className="font-semibold">MovieCatalog</span>
+            <span className="font-semibold">FilmStack</span>
           </div>
-          <p>© 2024 MovieCatalog. Todos los derechos reservados.</p>
+          <p>© 2025 FilmStack. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>

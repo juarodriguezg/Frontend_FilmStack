@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isAuthenticated = false }) => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors">
             <Film className="w-8 h-8" />
-            <span className="text-xl font-bold">MovieCatalog</span>
+            <span className="text-xl font-bold">FilmStack</span>
           </Link>
 
           <div className="flex items-center space-x-4">
