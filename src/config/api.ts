@@ -7,7 +7,7 @@ export const API_ENDPOINTS = {
   ME: '/auth/me',
   
   // Movies
-  MOVIES: '/movies',
+  MOVIES: '/movies/',
   MOVIE_BY_ID: (id: number) => `/movies/${id}`,
   SEARCH_MOVIES: '/movies/search',
 };

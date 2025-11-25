@@ -139,7 +139,7 @@ export const MovieForm: React.FC<MovieFormProps> = ({ movie, onSubmit, onCancel 
               placeholder="2024"
               {...register('year', {
                 required: 'El año es requerido',
-                min: { value: 1800, message: 'Año inválido' },
+                min: { value: 1, message: 'Año inválido' },
                 max: { value: 2100, message: 'Año inválido' },
               })}
               error={errors.year?.message}
